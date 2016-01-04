@@ -1,6 +1,8 @@
 data-joiner
 ===========
 
+[![Build Status](https://travis-ci.org/jimkang/data-joiner.svg?branch=master)](https://travis-ci.org/jimkang/data-joiner)
+
 Maintains a selection of objects, providing enter and exit arrays with each update, a la D3, except without the DOM.
 
 Inspired by [eue](https://github.com/hughsk/eue); I needed to write this module because I need key function support.
