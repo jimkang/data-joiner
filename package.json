@@ -1,0 +1,28 @@
+{
+  "name": "data-joiner",
+  "version": "1.0.0",
+  "description": "Maintains a selection of objects, providing enter and exit arrays with each update, a la D3, except without the DOM.",
+  "main": "index.js",
+  "scripts": {
+    "test": "make test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:jimkang/data-joiner.git"
+  },
+  "keywords": [
+    "D3",
+    "change management",
+    "array"
+  ],
+  "author": "Jim Kang",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jimkang/data-joiner/issues"
+  },
+  "homepage": "https://github.com/jimkang/data-joiner",
+  "devDependencies": {
+    "tape": "^3.0.3"
+  },
+  "dependencies": {}
+}
