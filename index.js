@@ -8,20 +8,18 @@ function DataJoiner(opts) {
     keyFn = opts.keyFn;
   }
 
-  if (!keyFn) {
-    keyFn = function identity(x) {
-      return x;
-    };
-  }
-
-  function datumIsNotInSelection(datum) {
-    var key = keyFn(datum);
-    for (var i = 0; i < selection.length; ++i) {
-      if (key === keyFn(selection[i])) {
-        return false;
+  function datumIsNotInSelection(datum, index) {
+    if (keyFn) {
+      var key = keyFn(datum);
+      for (var i = 0; i < selection.length; ++i) {
+        if (key === keyFn(selection[i])) {
+          return false;
+        }
       }
+      return true;
     }
-    return true;
+
+    return index >= selection.length;
   }
 
   function update(updatedData) {
@@ -32,14 +30,18 @@ function DataJoiner(opts) {
 
     selection = updatedData;
 
-    function datumIsNotInUpdatedData(datum) {
-      var key = keyFn(datum);
-      for (var i = 0; i < updatedData.length; ++i) {
-        if (key === keyFn(updatedData[i])) {
-          return false;
+    function datumIsNotInUpdatedData(datum, index) {
+      if (keyFn) {
+        var key = keyFn(datum);
+        for (var i = 0; i < updatedData.length; ++i) {
+          if (key === keyFn(updatedData[i])) {
+            return false;
+          }
         }
+        return true;
       }
-      return true;
+
+      return index >= updatedData.length;
     }
   }
 
@@ -54,7 +56,7 @@ function DataJoiner(opts) {
   return {
     update: update,
     enter: enter,
-    exit: exit
+    exit: exit,
   };
 }
 

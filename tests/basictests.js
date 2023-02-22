@@ -160,22 +160,13 @@ test('No key function', function noKeyFnTest(t) {
 
   t.deepEqual(
     joiner.enter(),
-    [
-      {
-        id: 'e',
-        val: 5,
-      },
-    ],
+    [],
     'Enter selection is correct after second update.'
   );
 
   t.deepEqual(
     joiner.exit(),
     [
-      {
-        id: 'b',
-        val: 2,
-      },
       {
         id: 'c',
         val: 3,
