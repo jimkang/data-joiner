@@ -5,18 +5,18 @@ test('Basic test', function basicTest(t) {
   var joiner = DataJoiner({
     keyFn: function getId(datum) {
       return datum.id;
-    }
+    },
   });
 
- joiner.update([
+  joiner.update([
     {
       id: 'a',
-      val: 1
+      val: 1,
     },
     {
       id: 'b',
-      val: 2
-    }
+      val: 2,
+    },
   ]);
 
   t.deepEqual(
@@ -24,34 +24,35 @@ test('Basic test', function basicTest(t) {
     [
       {
         id: 'a',
-        val: 1
+        val: 1,
       },
       {
         id: 'b',
-        val: 2
-      }
+        val: 2,
+      },
     ],
     'Enter selection is correct after first update.'
   );
 
   t.deepEqual(
-    joiner.exit(), [], 'Exit selection is correct after first update.'
+    joiner.exit(),
+    [],
+    'Exit selection is correct after first update.'
   );
-
 
   joiner.update([
     {
       id: 'b',
-      val: 2
+      val: 2,
     },
     {
       id: 'c',
-      val: 3
+      val: 3,
     },
     {
       id: 'd',
-      val: 4
-    }
+      val: 4,
+    },
   ]);
 
   t.deepEqual(
@@ -59,12 +60,12 @@ test('Basic test', function basicTest(t) {
     [
       {
         id: 'c',
-        val: 3
+        val: 3,
       },
       {
         id: 'd',
-        val: 4
-      }
+        val: 4,
+      },
     ],
     'Enter selection is correct after second update.'
   );
@@ -74,11 +75,118 @@ test('Basic test', function basicTest(t) {
     [
       {
         id: 'a',
-        val: 1
-      }
+        val: 1,
+      },
     ],
     'Exit selection is correct after second update.'
-  );  
+  );
+
+  t.end();
+});
+
+test('No key function', function noKeyFnTest(t) {
+  var joiner = DataJoiner();
+
+  joiner.update([
+    {
+      id: 'a',
+      val: 1,
+    },
+    {
+      id: 'b',
+      val: 2,
+    },
+  ]);
+
+  t.deepEqual(
+    joiner.enter(),
+    [
+      {
+        id: 'a',
+        val: 1,
+      },
+      {
+        id: 'b',
+        val: 2,
+      },
+    ],
+    'Enter selection is correct after first update.'
+  );
+
+  t.deepEqual(
+    joiner.exit(),
+    [],
+    'Exit selection is correct after first update.'
+  );
+
+  joiner.update([
+    {
+      id: 'b',
+      val: 2,
+    },
+    {
+      id: 'c',
+      val: 3,
+    },
+    {
+      id: 'd',
+      val: 4,
+    },
+  ]);
+
+  t.deepEqual(
+    joiner.enter(),
+    [
+      {
+        id: 'd',
+        val: 4,
+      },
+    ],
+    'Enter selection is correct after second update.'
+  );
+
+  t.deepEqual(
+    joiner.exit(),
+    [],
+    'Exit selection is correct after second update.'
+  );
+
+  joiner.update([
+    {
+      id: 'e',
+      val: 5,
+    },
+  ]);
+
+  t.deepEqual(
+    joiner.enter(),
+    [
+      {
+        id: 'e',
+        val: 5,
+      },
+    ],
+    'Enter selection is correct after second update.'
+  );
+
+  t.deepEqual(
+    joiner.exit(),
+    [
+      {
+        id: 'b',
+        val: 2,
+      },
+      {
+        id: 'c',
+        val: 3,
+      },
+      {
+        id: 'd',
+        val: 4,
+      },
+    ],
+    'Exit selection is correct after second update.'
+  );
 
   t.end();
 });
