@@ -1,6 +1,6 @@
 {
   "name": "data-joiner",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Maintains a selection of objects, providing enter and exit arrays with each update, a la D3, except without the DOM.",
   "main": "index.js",
   "scripts": {
