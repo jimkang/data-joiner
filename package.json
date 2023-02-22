@@ -22,7 +22,6 @@
   },
   "homepage": "https://github.com/jimkang/data-joiner",
   "devDependencies": {
-    "tape": "^3.0.3"
-  },
-  "dependencies": {}
+    "tape": "^5.6.3"
+  }
 }
